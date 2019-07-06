@@ -28,13 +28,14 @@ class BPA(nn.Module):
         ])
         self.predict = nn.Linear(c.Concat_vec_len*2, c.HOIlen)
     
-    def forward(self, imgs_path):
+    def forward(self, imgs_path, mode):
         # get all bounding box of all images
         bboxs = self.faster(imgs_path)
 
         # process every images one by one
         for obj in bboxs:
             img_path = obj[0]
+            img_name = img_path.split('/')[-1]
             bbox = obj[1]
 
             # sample 3 human and 4 object proposals
@@ -68,7 +69,8 @@ class BPA(nn.Module):
                  feature_map.shape[-1]/img.shape[-1])
             
             # upper line
-            upper_res = self.upper_module(feature_map, )
+            upper_res = self.upper_module(feature_map, persons, \
+                feature_map.shape[-1]/img.shape[-1], img_name, mode)
 
             # Concat and MIL
             hidden_vec = torch.cat((lower_res, upper_res), 1)

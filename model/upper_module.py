@@ -15,7 +15,7 @@ class upper_module(nn.Module):
         self.attention = nn.Linear(self.fx*self.fy, 1)
         self.fc6 = nn.Linear(self.fx*self.fy, c.Concat_vec_len)
 
-    def forward(self, features, people_bbox, ratio, image_name, k=10, mode='train'):
+    def forward(self, features, people_bbox, ratio, image_name, mode='train', k=10):
         # out: tensor -> [person, C(10, 2), feature map,]
         # res_global = []
         res_global = torch.tensor([])
@@ -73,8 +73,8 @@ class upper_module(nn.Module):
 
     def get_body_part(self, person_bbox, image_name='000000035005.jpg', mode='train'): 
         # ouput: body part bboxes
-        # filename = '/home/pj19/twoTFolder/DL_final_project/data/'+mode+'_alphapose/alphapose-results.json'
-        filename = '/home/pj19/twoTFolder/DL_final_project/AlphaPose/examples/res/alphapose-results.json'
+        filename = '/home/pj19/twoTFolder/DL_final_project/data/'+mode+'_alphapose/alphapose-results.json'
+        # filename = '/home/pj19/twoTFolder/DL_final_project/AlphaPose/examples/res/alphapose-results.json'
         with open(filename) as json_file:
             #  load alphapose data from json file
             pics = json.load(json_file)
@@ -92,4 +92,4 @@ class upper_module(nn.Module):
     def get_body_pair(self, feature, person_bbox, ratio, image_name, mode): # output: feature map pairs
         parts = self.get_body_part(person_bbox, image_name, mode)
         res = []
-        # C(k, 2) kinds of union region, and get the correspond fea
+        # C(k, 2) kinds of union region, and get the correspond feature
