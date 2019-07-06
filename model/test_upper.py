@@ -19,7 +19,7 @@ trans = transforms.Compose([
     transforms.ToTensor(),
 ])
 persons = [[0, 0, 1000, 1000]]
-img_path = '/home/pj19/DL_final_project/input_img/'
+img_path = '/home/pj19/twoTFolder/DL_final_project/input_img/'
 img_name = '000000035005.jpg'
 vgg = vg.vgg16()
 

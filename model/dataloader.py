@@ -11,7 +11,7 @@ import torch
 from torch.utils.data.dataset import Dataset
 
 class HICO(Dataset):
-    def __init__(self, imageset='train', root='/home/pj19/DL_final_project/data/hico_20150920/'):
+    def __init__(self, imageset='train', root='/home/pj19/twoTFolder/DL_final_project/data/hico_20150920/'):
         self.imageset = imageset
         self.path = os.path.join(root,'images','{}2015'.format(imageset))
 

@@ -73,8 +73,8 @@ class upper_module(nn.Module):
 
     def get_body_part(self, person_bbox, image_name='000000035005.jpg', mode='train'): 
         # ouput: body part bboxes
-        # filename = '/home/pj19/DL_final_project/data/'+mode+'_alphapose/alphapose-results.json'
-        filename = '/home/pj19/DL_final_project/AlphaPose/examples/res/alphapose-results.json'
+        # filename = '/home/pj19/twoTFolder/DL_final_project/data/'+mode+'_alphapose/alphapose-results.json'
+        filename = '/home/pj19/twoTFolder/DL_final_project/AlphaPose/examples/res/alphapose-results.json'
         with open(filename) as json_file:
             #  load alphapose data from json file
             pics = json.load(json_file)
