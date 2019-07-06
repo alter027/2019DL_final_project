@@ -8,7 +8,7 @@ import torch
 import torch.nn as nn
 import numpy as np
 
-import config as c
+import model.config as c
 
 class lower_module(nn.Module):
     def __init__(self):
@@ -34,7 +34,7 @@ class lower_module(nn.Module):
             for j in obj_bboxs:
                 obj_b = tuple(int(np.round(x*ratio)) for x in j[1][:4])
                 f = feature[min(per_b[1], obj_b[1]):max(per_b[3], obj_b[3]),\
-                    min(per_b[0], obj_b[0]:max(per_b[2], obj_b[2])]
+                    min(per_b[0], obj_b[0]):max(per_b[2], obj_b[2])]
                 objects.append(self.RoI(f).view(-1))
 
         for _ in range(3-len(human)):
